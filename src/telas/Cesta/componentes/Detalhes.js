@@ -1,22 +1,29 @@
-import React from 'react';
-import { Image, StyleSheet, View, TouchableOpacity } from 'react-native';
+import React from "react";
+import { Image, StyleSheet, View } from "react-native";
 
-import Texto from '../../../componentes/Texto';
+import Botao from "../../../componentes/Botao";
+import Texto from "../../../componentes/Texto";
 
-export default function Detalhes({ nome, logoFazenda, nomeFazenda, descricao, preco, botao }) {
-  return <>
-    <Texto style={estilos.nome}>{ nome }</Texto>
-    <View style={estilos.fazenda}>
-      <Image source={logoFazenda} style={estilos.imagemFazenda} />
-      <Texto style={estilos.nomeFazenda}>{ nomeFazenda }</Texto>
-    </View>
-    <Texto style={estilos.descricao}>{ descricao }</Texto>
-    <Texto style={estilos.preco}>{ preco }</Texto>
+export default function Detalhes({ nome, logoFazenda, nomeFazenda, descricao, preco, botao, alertaComprar }) {
+  const handleClick = () => {
+    alert(alertaComprar);
+  };
 
-    <TouchableOpacity style={estilos.botao} onPress={() => {}}>
-      <Texto style={estilos.textoBotao}>{ botao }</Texto>
-    </TouchableOpacity>
-  </>
+  return (
+    <>
+      <Texto style={estilos.nome}>{nome}</Texto>
+      <View style={estilos.fazenda}>
+        <Image source={logoFazenda} style={estilos.imagemFazenda} />
+        <Texto style={estilos.nomeFazenda}>{nomeFazenda}</Texto>
+      </View>
+      <Texto style={estilos.descricao}>{descricao}</Texto>
+      <Texto style={estilos.preco}>{preco}</Texto>
+
+      <Botao onPress={() => handleClick()} styleButton={estilos.botao} styleText={estilos.textoBotao}>
+        {botao}
+      </Botao>
+    </>
+  );
 }
 
 const estilos = StyleSheet.create({
@@ -24,7 +31,7 @@ const estilos = StyleSheet.create({
     color: "#464646",
     fontSize: 26,
     lineHeight: 42,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   fazenda: {
     flexDirection: "row",
@@ -51,17 +58,4 @@ const estilos = StyleSheet.create({
     lineHeight: 42,
     marginTop: 8,
   },
-  botao: {
-    marginTop: 16,
-    backgroundColor: "#2A9F85",
-    paddingVertical: 16,
-    borderRadius: 6,
-  },
-  textoBotao: {
-    textAlign: "center",
-    color: "#ffffff",
-    fontSize: 16,
-    lineHeight: 26,
-    fontWeight: "bold",
-  },
-})
+});
